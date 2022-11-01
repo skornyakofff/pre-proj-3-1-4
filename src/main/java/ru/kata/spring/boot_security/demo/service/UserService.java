@@ -27,12 +27,13 @@ public class UserService implements UserDetailsService {
         return userDao.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s not found", username)));
     }
+    @Transactional
     public void saveUser(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.save(user);
     }
-
+    @Transactional
     public void deleteUser(Long id) {
         userDao.deleteById(id);
     }
