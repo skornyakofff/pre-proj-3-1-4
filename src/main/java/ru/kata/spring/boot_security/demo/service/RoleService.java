@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.entities.Role;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -22,19 +21,7 @@ public class RoleService {
         return roleDao.findAll();
     }
 
-
-    public Role getRole(String userRole) {
-        return roleDao.getRole(userRole);
-    }
-
-
-    public Role getRoleById(Integer id) {
-        return roleDao.getById(id);
-    }
-
-
-    @Transactional
-    public void addRole(Role role) {
-        roleDao.addRole(role);
+    public void saveRole(Role role) {
+        roleDao.save(role);
     }
 }
